@@ -5,14 +5,6 @@ export const CATEGORIES_PARTICULIER = ['emploi', 'stage', 'alternance', 'service
 export const CATEGORIES_ETUDIANT = ['don'] as const
 export const TOUTES_CATEGORIES = [...CATEGORIES_BAILLEUR, ...CATEGORIES_PARTICULIER] as const
 
-/* ── Convertit n'importe quelle valeur d'input en number | undefined ── */
-function toNum(v: unknown): number | undefined {
-  if (v === '' || v === null || v === undefined) return undefined
-  if (typeof v === 'number') return isNaN(v) ? undefined : v
-  const n = parseFloat(String(v))
-  return isNaN(n) ? undefined : n
-}
-
 export const annonceSchema = z.object({
   categorie: z.enum(['logement', 'studio', 'colocation', 'chambre', 'emploi', 'stage', 'alternance', 'service', 'don']),
 
@@ -28,34 +20,24 @@ export const annonceSchema = z.object({
 
   ville: z.string().min(2, 'La ville est requise'),
 
-  prix: z.preprocess(
-    toNum,
-    z.number()
-      .nonnegative('Le prix ne peut pas être négatif')
-      .max(99999, 'Prix trop élevé')
-      .optional()
-  ),
+  prix: z.number()
+    .nonnegative('Le prix ne peut pas être négatif')
+    .max(99999, 'Prix trop élevé')
+    .optional(),
 
-  surface: z.preprocess(
-    toNum,
-    z.number()
-      .positive('La surface doit être positive')
-      .multipleOf(0.5, 'La surface doit être un multiple de 0,5 m²')
-      .max(9999.5, 'Surface trop grande')
-      .optional()
-      .nullable()
-  ),
+  surface: z.number()
+    .positive('La surface doit être positive')
+    .max(9999.5, 'Surface trop grande')
+    .optional()
+    .nullable(),
 
   type_logement: z.enum(['studio', 'colocation', 'chambre']).optional().nullable(),
 
-  caution: z.preprocess(
-    toNum,
-    z.number()
-      .nonnegative('La caution ne peut pas être négative')
-      .max(99999, 'Caution trop élevée')
-      .optional()
-      .nullable()
-  ),
+  caution: z.number()
+    .nonnegative('La caution ne peut pas être négative')
+    .max(99999, 'Caution trop élevée')
+    .optional()
+    .nullable(),
 
   garantie: z.enum(['visale', 'garant', 'autre']).optional().nullable(),
 

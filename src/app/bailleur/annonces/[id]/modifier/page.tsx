@@ -81,7 +81,7 @@ export default function ModifierAnnoncePage() {
         titre: annonce.titre,
         description: annonce.description,
         ville: annonce.ville,
-        prix: annonce.prix,
+        prix: annonce.prix ?? 0,
         surface: annonce.surface,
         type_logement: annonce.type_logement,
         caution: annonce.caution,
