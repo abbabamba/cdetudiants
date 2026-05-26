@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "Bash(npx --version)",
+      "Bash(~/.nvm/versions/node/v20.20.2/bin/node --version)",
+      "Bash(~/.nvm/versions/node/v20.20.2/bin/npx --version)"
+    ]
+  }
+}
