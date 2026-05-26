@@ -83,7 +83,7 @@ export async function NavbarServer() {
   if (previewRole && isAdmin) {
     effectiveProfile = profile
       ? { ...profile, role: previewRole }
-      : { nom: '', prenom: 'Admin', role: previewRole }
+      : { nom: '', prenom: 'Admin', role: previewRole, telephone: null, phone_verified: false, photo_url: null }
     effectiveIsAdmin = false
   }
 

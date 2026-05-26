@@ -8,7 +8,7 @@ interface MesAnnoncesCardProps {
   titre: string
   ville: string
   prix: number
-  surface: number | null
+  surface?: number | null
   statut: string
   photo?: string | null
 }
